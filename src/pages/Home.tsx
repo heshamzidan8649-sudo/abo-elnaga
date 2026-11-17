@@ -3,27 +3,44 @@ import { getCategories, getProducts } from '../lib/catalog'
 import { useAsync } from '../lib/useAsync'
 import CategoryCard from '../components/CategoryCard'
 import ProductCard from '../components/ProductCard'
+import Reveal from '../components/ui/Reveal'
 
 // نصوص مؤقتة: لازم تتراجع مع العميل قبل النشر.
 const highlights = [
-  { title: 'مصنع', text: 'نص مؤقت: وصف التصنيع هيتكتب بعد ما نعرف تفاصيل الشغل.' },
-  { title: 'معرض', text: 'نص مؤقت: وصف المعرض والعنوان هيتأكدوا من العميل.' },
-  { title: 'اطلب سعرك', text: 'تواصل معنا واحنا نرد عليك بالتفاصيل والسعر.' },
+  {
+    no: '٠١',
+    title: 'مصنع',
+    text: 'نص مؤقت: وصف التصنيع هيتكتب بعد ما نعرف تفاصيل الشغل.',
+    icon: 'M3 21V9l6 4V9l6 4V5h6v16H3z',
+  },
+  {
+    no: '٠٢',
+    title: 'معرض',
+    text: 'نص مؤقت: وصف المعرض والعنوان هيتأكدوا من العميل.',
+    icon: 'M3 10l9-6 9 6v10H3V10zm6 10v-6h6v6',
+  },
+  {
+    no: '٠٣',
+    title: 'اطلب سعرك',
+    text: 'تواصل معنا واحنا نرد عليك بالتفاصيل والسعر.',
+    icon: 'M4 5h16v11H8l-4 4V5z',
+  },
 ]
 
-function SectionHeading({ title, to }: { title: string; to?: string }) {
+function SectionHeading({ title, to, no }: { title: string; to?: string; no?: string }) {
   return (
-    <div className="mb-12 flex items-end justify-between gap-6">
+    <Reveal className="mb-12 flex items-end justify-between gap-6">
       <div className="flex-1">
+        {no && <span className="font-display text-lg text-gold/70">{no}</span>}
         <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl">{title}</h2>
-        <div className="gold-line mt-4 max-w-xs" />
+        <div className="gold-line line-grow mt-4 max-w-xs" />
       </div>
       {to && (
         <Link to={to} className="shrink-0 text-sm text-gold transition hover:text-gold-soft">
           عرض الكل ←
         </Link>
       )}
-    </div>
+    </Reveal>
   )
 }
 
@@ -33,17 +50,17 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero-bg relative overflow-hidden border-b border-white/10">
-        <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-24">
+      <section className="hero-bg hero-grain relative overflow-hidden border-b border-gold/20">
+        <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-8 px-6 py-10 md:grid-cols-2 md:gap-12 md:py-24">
           <div>
-            <p className="rise mb-6 flex items-center gap-4 text-sm tracking-wide text-gold">
+            <p className="rise mb-5 flex items-center gap-4 text-sm tracking-wide text-gold">
               <span className="h-px w-12 bg-gold" />
-              مصنع ومعرض أثاث
+              أبو النجا للأثاث · مصنع ومعرض
             </p>
-            <h1 className="rise-2 font-display text-6xl font-bold leading-[1.15] md:text-8xl">
-              <span className="gold-text">أبو النجا</span>
+            <h1 className="rise-2 font-display text-5xl font-bold leading-[1.3] md:text-7xl">
+              <span className="gold-text">أثاث يُصنع بإتقان</span>
               <br />
-              للأثاث
+              <span className="text-ivory">ليدوم لسنين</span>
             </h1>
             <p className="rise-3 mt-8 max-w-md text-lg text-stone">
               نص تعريفي مؤقت. هيتكتب النص الحقيقي بعد ما نعرف تفاصيل الشغل من العميل.
@@ -63,7 +80,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="rise-2 mx-auto w-full max-w-md">
+          <div className="rise-2 frame-gold order-first mx-auto w-full max-w-[16rem] sm:max-w-sm md:order-none md:max-w-md">
             <img
               src="/logo.jpg"
               alt="شعار أبو النجا للأثاث"
@@ -73,14 +90,41 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-charcoal">
-        <div className="mx-auto grid max-w-7xl gap-px px-6 md:grid-cols-3">
-          {highlights.map((h) => (
-            <div key={h.title} className="py-10 md:px-8 md:first:ps-0 md:last:pe-0">
-              <h3 className="font-display text-2xl text-gold">{h.title}</h3>
-              <p className="mt-2 text-sm text-stone">{h.text}</p>
-            </div>
-          ))}
+      <section className="section-glow border-b border-gold/20">
+        <div className="mx-auto max-w-7xl px-6 py-20 md:py-24">
+          <Reveal className="mb-14 text-center">
+            <p className="mb-3 flex items-center justify-center gap-4 text-sm tracking-wide text-gold">
+              <span className="h-px w-10 bg-gold/60" />
+              ما نقدّمه
+              <span className="h-px w-10 bg-gold/60" />
+            </p>
+            <h2 className="font-display text-4xl font-bold text-ivory md:text-5xl">
+              تفاصيل <span className="gold-text">تصنع الفرق</span>
+            </h2>
+          </Reveal>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {highlights.map((h, i) => (
+              <Reveal key={h.title} delay={i * 140}>
+                <div className="group card-shine relative h-full border border-white/10 bg-ink/50 p-8 transition duration-500 hover:-translate-y-1.5 hover:border-gold/50 md:p-10">
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -top-4 inset-e-4 font-display text-8xl font-bold text-gold/[0.07] transition duration-500 group-hover:text-gold/[0.14]"
+                  >
+                    {h.no}
+                  </span>
+                  <div className="diamond mb-9">
+                    <svg viewBox="0 0 24 24" className="h-7 w-7 fill-none stroke-gold" strokeWidth="1.2" aria-hidden="true">
+                      <path d={h.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="font-display text-3xl text-ivory transition group-hover:text-gold-soft">{h.title}</h3>
+                  <div className="mt-4 h-px w-10 bg-gold transition-all duration-500 group-hover:w-24" />
+                  <p className="mt-5 text-sm leading-7 text-stone">{h.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -90,10 +134,12 @@ export default function Home() {
 
       {categories.data && categories.data.length > 0 && (
         <section className="mx-auto max-w-7xl px-6 py-20">
-          <SectionHeading title="المجموعات" to="/collections" />
+          <SectionHeading no="٠١" title="المجموعات" to="/collections" />
           <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-7">
-            {categories.data.map((c) => (
-              <CategoryCard key={c.id} category={c} />
+            {categories.data.map((c, i) => (
+              <Reveal key={c.id} delay={(i % 4) * 100}>
+                <CategoryCard category={c} />
+              </Reveal>
             ))}
           </div>
         </section>
@@ -102,10 +148,12 @@ export default function Home() {
       {featured.data && featured.data.length > 0 && (
         <section className="border-t border-white/10 bg-charcoal/60">
           <div className="mx-auto max-w-7xl px-6 py-20">
-            <SectionHeading title="منتجات مختارة" to="/collections" />
+            <SectionHeading no="٠٢" title="منتجات مختارة" to="/collections" />
             <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-7">
-              {featured.data.map((p) => (
-                <ProductCard key={p.id} product={p} />
+              {featured.data.map((p, i) => (
+                <Reveal key={p.id} delay={(i % 4) * 100}>
+                  <ProductCard product={p} />
+                </Reveal>
               ))}
             </div>
           </div>
