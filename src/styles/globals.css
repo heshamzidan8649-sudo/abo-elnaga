@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0d0d0d;
+  --color-charcoal: #1a1a1a;
+  --color-graphite: #2a2a2a;
+  --color-gold: #b8975a;
+  --color-gold-soft: #d4b87f;
+  --color-ivory: #f6f1e7;
+  --color-stone: #c9c3b6;
+  --font-display: "Amiri", "Times New Roman", serif;
+  --font-body: "IBM Plex Sans Arabic", system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-ink);
+  color: var(--color-ivory);
+  font-family: var(--font-body);
+  line-height: 1.8;
+}
