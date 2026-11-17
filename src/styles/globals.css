@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0d0d0d;
-  --color-charcoal: #1a1a1a;
-  --color-graphite: #2a2a2a;
-  --color-gold: #b8975a;
-  --color-gold-soft: #d4b87f;
+  --color-ink: #0b0b10;
+  --color-navy: #15172b;
+  --color-charcoal: #17171d;
+  --color-graphite: #26262e;
+  --color-gold: #d9a521;
+  --color-gold-soft: #f2cf63;
   --color-ivory: #f6f1e7;
   --color-stone: #c9c3b6;
   --font-display: "Amiri", "Times New Roman", serif;
@@ -18,4 +19,33 @@ body {
   color: var(--color-ivory);
   font-family: var(--font-body);
   line-height: 1.8;
+}
+::selection { background: var(--color-gold); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
+
+.gold-text {
+  background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gold-line {
+  height: 1px;
+  background: linear-gradient(to left, transparent, var(--color-gold), transparent);
+}
+.hero-bg {
+  background:
+    radial-gradient(55% 60% at 25% 45%, rgb(217 165 33 / 0.16), transparent 70%),
+    radial-gradient(40% 50% at 85% 10%, rgb(21 23 43 / 0.9), transparent 70%);
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.9s ease both; }
+.rise-2 { animation: rise 0.9s 0.15s ease both; }
+.rise-3 { animation: rise 0.9s 0.3s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  .rise, .rise-2, .rise-3 { animation: none; }
+  html { scroll-behavior: auto; }
 }
